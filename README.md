@@ -1,2 +1,3 @@
 # fullstack-Exercises
-Solution for exercises made from https://fullstackopen.com
+
+Exercises I made from https://fullstackopen.com.
