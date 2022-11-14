@@ -5,6 +5,13 @@ const Button = ({ text, handleClick }) => {
 };
 
 const Statistics = ({ good, neutral, bad }) => {
+  if (good === 0 && neutral === 0 && bad === 0) {
+    return (
+      <div>
+        <p>No feedback given!</p>
+      </div>
+    );
+  }
   return (
     <div>
       <p>Good: {good}</p>
@@ -41,6 +48,7 @@ const App = () => {
       <Button text="good" handleClick={incrementGoodValue} />
       <Button text="neutral" handleClick={incrementNeutralValue} />
       <Button text="bad" handleClick={incrementBadValue} />
+      <h1>Statistics</h1>
       <Statistics good={good} neutral={neutral} bad={bad} />
     </div>
   );
