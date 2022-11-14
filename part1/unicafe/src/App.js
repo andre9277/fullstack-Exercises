@@ -6,11 +6,14 @@ const Button = ({ text, handleClick }) => {
 
 const StatisticLine = ({ text, value }) => {
   return (
-    <div>
-      <p>
-        {text}: {value}
-      </p>
-    </div>
+    <table>
+      <tbody>
+        <tr>
+          <th>{text}</th>
+          <td>{value}</td>
+        </tr>
+      </tbody>
+    </table>
   );
 };
 
