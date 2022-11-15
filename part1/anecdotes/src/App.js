@@ -22,33 +22,24 @@ const App = () => {
     setSelected(getRandomInt(anecdotes.length));
   };
 
-  const addVote = (index) => {
+  const addVote = () => {
     const copy = [...votes];
     copy[selected] += 1;
     setVotes(copy);
 
-    console.log(copy);
+    //console.log(copy);
   };
 
-  /*
-  const addVote = () => {
-    //const points = new Array(anecdotes.length).fill(anec);
-    const copy = [...anecdotes];
-    for (let i = 0; i < anecdotes.length; i++) {
-      if (anecdotes[selected] === copy[i]) {
-        let temp = 0;
-        temp = vote[i];
-        setVote((temp += 1));
-      }
-    }
-  };
-*/
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       <div>{anecdotes[selected]}</div>
       <div>has {votes[selected]} votes</div>
       <button onClick={addVote}>Vote</button>
       <button onClick={nextAnd}>Next anedote</button>
+      <h1>Anecdote with most votes</h1>
+      <p>{anecdotes[votes.indexOf(Math.max.apply(0, votes))]}</p>
+      <p>has {votes[votes.indexOf(Math.max.apply(0, votes))]} votes</p>
     </div>
   );
 };
