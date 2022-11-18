@@ -17,14 +17,19 @@ const Part = ({ part }) => (
   </p>
 );
 
-const Content = ({ parts }) => (
-  <>
-    <Part part={parts[0]} />
-    <Part part={parts[1]} />
-    <Part part={parts[2]} />
-    <Total sum={parts[0].exercises + parts[1].exercises + parts[2].exercises} />
-  </>
-);
+const Content = ({ parts }) => {
+  console.log(parts);
+  const total = parts.reduce((s, p) => s + p.exercises, 0);
+
+  return (
+    <>
+      <Part part={parts[0]} />
+      <Part part={parts[1]} />
+      <Part part={parts[2]} />
+      <Total sum={total} />
+    </>
+  );
+};
 
 const App = () => {
   const course = {
