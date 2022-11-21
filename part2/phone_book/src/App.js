@@ -11,7 +11,19 @@ const App = () => {
       id: persons.length + 1,
     };
 
+    if (
+      //metodo some: tests whether at least one element in the array passes the test implemented by the provided function.
+      persons.some(
+        (person) => person.name.toLowerCase() === numbObject.name.toLowerCase()
+      )
+    ) {
+      alert(`${newName} is already added to phonebook!`);
+      setNewName("");
+      return;
+    }
+
     setPersons(persons.concat(numbObject));
+
     setNewName("");
   };
 
