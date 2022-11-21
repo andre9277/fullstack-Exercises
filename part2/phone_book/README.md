@@ -23,3 +23,7 @@ If you have implemented your application in a single component, refactor it by e
 It is sufficient to extract three components from the application. Good candidates for separate components are, for example, the search filter, the form for adding new people into the phonebook, a component that renders all people from the phonebook, and a component that renders a single person's details.
 
 The application's root component could look similar to this after the refactoring. The refactored root component below only renders titles and lets the extracted components take care of the rest.
+
+2.11: The Phonebook Step6
+
+We continue with developing the phonebook. Store the initial state of the application in the file db.json, which should be placed in the root of the project. Modify the application such that the initial state of the data is fetched from the server using the axios-library. Complete the fetching with an Effect hook.
