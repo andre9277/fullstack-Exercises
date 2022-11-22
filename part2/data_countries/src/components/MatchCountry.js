@@ -5,8 +5,8 @@ const MatchCountry = ({ countryfilt }) => {
   const [show, setShow] = useState(-1);
 
   const handleClick = (index) => {
-    console.log(index);
-    console.log(show);
+    //console.log(index);
+    //console.log(show);
     //Se o valor do index é = ao show, o show =-1. Senão guarda o valor do index do país clicado!
     index === show ? setShow(-1) : setShow(index);
   };
