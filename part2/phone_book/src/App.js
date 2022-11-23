@@ -10,6 +10,7 @@ const App = () => {
   const [newNumber, setNewNumber] = useState("");
   const [nameFilter, setNameFilter] = useState([]);
 
+  //Correr comando: json-server --port 3001 --watch db.json
   useEffect(() => {
     console.log("effect");
     axios.get("http://localhost:3001/persons").then((response) => {
@@ -37,10 +38,11 @@ const App = () => {
       return;
     }
 
-    setPersons(persons.concat(numbObject));
-
-    setNewName("");
-    setNewNumber("");
+    axios.post("http://localhost:3001/persons", numbObject).then((response) => {
+      setPersons(persons.concat(response.data));
+      setNewName("");
+      setNewNumber("");
+    });
   };
 
   const handleNameChange = (event) => {
