@@ -38,23 +38,40 @@ const App = () => {
       id: persons.length + 1,
       number: newNumber,
     };
-
+    const sameNamePerson = persons.find((o) => o.name === newName);
     if (
       //metodo some: tests whether at least one element in the array passes the test implemented by the provided function.
       persons.some(
         (person) => person.name.toLowerCase() === numbObject.name.toLowerCase()
       )
     ) {
-      alert(`${newName} is already added to phonebook!`);
-      setNewName("");
-      return;
+      if (
+        window.confirm(
+          `${newName} is already added to phonebook, replace the old number with a new one?`
+        )
+      ) {
+        const updatedPerson = { ...sameNamePerson, number: newNumber };
+        console.log("mememe:", updatedPerson.id);
+        personService
+          .update(updatedPerson.id, updatedPerson)
+          .then((returned) => {
+            setPersons(
+              persons.map(
+                (person) => (person.name !== newName ? person : returned) //Ver esta parte amanha!
+              )
+            );
+            // Didn't work, created duplicate keys on frontend: setPeople(people.concat(returnedContact))
+            setNewName("");
+            setNewNumber("");
+          });
+      }
+    } else {
+      personService.create(numbObject).then((returnedPerson) => {
+        setPersons(persons.concat(returnedPerson));
+        setNewName("");
+        setNewNumber("");
+      });
     }
-
-    personService.create(numbObject).then((returnedPerson) => {
-      setPersons(persons.concat(returnedPerson));
-      setNewName("");
-      setNewNumber("");
-    });
   };
 
   const handleNameChange = (event) => {
