@@ -1,6 +1,6 @@
 import Person from "./Person";
 
-const Persons = ({ persons, nameFilter }) => {
+const Persons = ({ persons, nameFilter, dlePersonHandlerr }) => {
   return (
     <div>
       {nameFilter.length === 0 ? (
@@ -16,6 +16,7 @@ const Persons = ({ persons, nameFilter }) => {
               id={filtName.id}
               name={filtName.name}
               number={filtName.number}
+              dlePersonHandlerr={dlePersonHandlerr}
             />
           ))
       )}

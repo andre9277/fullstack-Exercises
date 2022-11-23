@@ -1,7 +1,8 @@
-const Person = ({ id, name, number }) => {
+const Person = ({ id, name, number, dlePersonHandlerr }) => {
   return (
     <div key={id}>
-      {name} {number}
+      {name} {number}{" "}
+      <button onClick={() => dlePersonHandlerr(id, name)}> Delete </button>
     </div>
   );
 };

@@ -20,6 +20,21 @@ const App = () => {
     });
   }, []);
 
+  /*const dlePersonHandler = (id) => {
+    console.log(id);
+    personService.deletePerson(id).then(() => "Eliminado com sucesso");
+  };*/
+
+  const dlePersonHandlerr = (id, name) => {
+    const res = window.confirm(`Delete ${name} from phonebook?`);
+    if (res) {
+      personService.deletePerson(id, name).then(() => {
+        const newList = persons.filter((person) => person.id != id);
+        setPersons(newList);
+      });
+    }
+  };
+
   const addNumber = (event) => {
     event.preventDefault();
     const numbObject = {
@@ -74,7 +89,11 @@ const App = () => {
       />
 
       <h2>Numbers</h2>
-      <Persons persons={persons} nameFilter={nameFilter} />
+      <Persons
+        persons={persons}
+        nameFilter={nameFilter}
+        dlePersonHandlerr={dlePersonHandlerr}
+      />
     </div>
   );
 };
