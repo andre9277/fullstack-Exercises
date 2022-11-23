@@ -15,21 +15,16 @@ const App = () => {
   useEffect(() => {
     console.log("effect");
     personService.getAll().then((initialPersons) => {
-      console.log("promise fulfilled");
+      //console.log("promise fulfilled");
       setPersons(initialPersons);
     });
   }, []);
-
-  /*const dlePersonHandler = (id) => {
-    console.log(id);
-    personService.deletePerson(id).then(() => "Eliminado com sucesso");
-  };*/
 
   const dlePersonHandlerr = (id, name) => {
     const res = window.confirm(`Delete ${name} from phonebook?`);
     if (res) {
       personService.deletePerson(id).then(() => {
-        setPersons(persons.filter((person) => person.id != id));
+        setPersons(persons.filter((person) => person.id !== id));
       });
     }
     setNameFilter("");
@@ -80,7 +75,7 @@ const App = () => {
       <h2>Phonebook</h2>
 
       <Filter hdFiltCg={handleFilterChange} />
-
+      <h1> Add a new </h1>
       <PersonForm
         addNum={addNumber}
         nName={newName}
