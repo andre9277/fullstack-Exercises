@@ -9,7 +9,7 @@ const App = () => {
   const [persons, setPersons] = useState([{}]);
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
-  const [nameFilter, setNameFilter] = useState([]);
+  const [nameFilter, setNameFilter] = useState("");
 
   //Correr comando: json-server --port 3001 --watch db.json
   useEffect(() => {
@@ -28,13 +28,14 @@ const App = () => {
   const dlePersonHandlerr = (id, name) => {
     const res = window.confirm(`Delete ${name} from phonebook?`);
     if (res) {
-      personService.deletePerson(id, name).then(() => {
-        const newList = persons.filter((person) => person.id != id);
-        setPersons(newList);
+      personService.deletePerson(id).then(() => {
+        setPersons(persons.filter((person) => person.id != id));
       });
     }
+    setNameFilter("");
   };
 
+  //Function that adds a new person with number
   const addNumber = (event) => {
     event.preventDefault();
     const numbObject = {
