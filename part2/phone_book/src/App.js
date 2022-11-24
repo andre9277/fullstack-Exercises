@@ -91,14 +91,14 @@ const App = () => {
     <div>
       <h2>Phonebook</h2>
 
-      <Filter hdFiltCg={handleFilterChange} />
+      <Filter handleFilterChange={handleFilterChange} nameFilter={nameFilter} />
       <h1> Add a new </h1>
       <PersonForm
         addNum={addNumber}
-        nName={newName}
-        nNumber={newNumber}
-        hdNmCg={handleNameChange}
-        hdNbCg={handleNumberChange}
+        newName={newName}
+        newNumber={newNumber}
+        handleNameChange={handleNameChange}
+        handleNumberChange={handleNumberChange}
       />
 
       <h2>Numbers</h2>

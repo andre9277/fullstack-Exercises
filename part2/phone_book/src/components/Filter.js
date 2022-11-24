@@ -1,7 +1,8 @@
-const Filter = ({ hdFiltCg }) => {
+const Filter = ({ handleFilterChange, nameFilter }) => {
   return (
     <div>
-      filter shown with: <input onChange={hdFiltCg} />
+      filter shown with:{" "}
+      <input onChange={handleFilterChange} value={nameFilter} />
     </div>
   );
 };
