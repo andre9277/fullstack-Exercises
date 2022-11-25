@@ -4,12 +4,14 @@ import PersonForm from "./components/PersonForm";
 import Persons from "./components/Persons";
 //import axios from "axios";
 import personService from "./services/persons";
+import "./App.css";
 
 const App = () => {
   const [persons, setPersons] = useState([{}]);
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [nameFilter, setNameFilter] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
 
   //Correr comando: json-server --port 3001 --watch db.json
   useEffect(() => {
@@ -57,20 +59,36 @@ const App = () => {
           .then((returned) => {
             setPersons(
               persons.map(
-                (person) => (person.name !== newName ? person : returned) //Ver esta parte amanha!
+                (person) => (person.name !== newName ? person : returned) //returned é um objeto!
               )
             );
-            // Didn't work, created duplicate keys on frontend: setPeople(people.concat(returnedContact))
+
             setNewName("");
             setNewNumber("");
+          })
+          .then(() => {
+            setErrorMessage(
+              `Person '${updatedPerson.name}' was updated in the server`
+            );
+            setTimeout(() => {
+              setErrorMessage(null);
+            }, 5000);
           });
       }
     } else {
-      personService.create(numbObject).then((returnedPerson) => {
-        setPersons(persons.concat(returnedPerson));
-        setNewName("");
-        setNewNumber("");
-      });
+      personService
+        .create(numbObject)
+        .then((returnedPerson) => {
+          setPersons(persons.concat(returnedPerson));
+          setNewName("");
+          setNewNumber("");
+        })
+        .then(() => {
+          setErrorMessage(`Person '${numbObject.name}' was added to server`);
+          setTimeout(() => {
+            setErrorMessage(null);
+          }, 5000);
+        });
     }
   };
 
@@ -87,9 +105,18 @@ const App = () => {
     setNameFilter(event.target.value);
   };
 
+  const Notification = ({ message }) => {
+    if (message === null) {
+      return null;
+    }
+
+    return <div className="error">{message}</div>;
+  };
+
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={errorMessage} />
 
       <Filter handleFilterChange={handleFilterChange} nameFilter={nameFilter} />
       <h1> Add a new </h1>
