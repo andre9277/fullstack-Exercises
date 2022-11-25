@@ -2,7 +2,7 @@ import Person from "./Person";
 
 const Persons = ({ persons, nameFilter, dlePersonHandlerr }) => {
   return (
-    <div key={persons.map((item) => item.id)}>
+    <div key={persons.map((item) => item.id + 1)}>
       {nameFilter.length === 0 ? (
         <div key={persons.map((item) => item.id)}>
           {""}

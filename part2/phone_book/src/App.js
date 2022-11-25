@@ -12,6 +12,7 @@ const App = () => {
   const [newNumber, setNewNumber] = useState("");
   const [nameFilter, setNameFilter] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
+  const [addedMessage, setAddedMessage] = useState(null);
 
   //Correr comando: json-server --port 3001 --watch db.json
   useEffect(() => {
@@ -67,8 +68,16 @@ const App = () => {
             setNewNumber("");
           })
           .then(() => {
-            setErrorMessage(
+            setAddedMessage(
               `Person '${updatedPerson.name}' was updated in the server`
+            );
+            setTimeout(() => {
+              setAddedMessage(null);
+            }, 5000);
+          })
+          .catch((error) => {
+            setErrorMessage(
+              `Person '${updatedPerson.name}' was not found in the server`
             );
             setTimeout(() => {
               setErrorMessage(null);
@@ -84,9 +93,9 @@ const App = () => {
           setNewNumber("");
         })
         .then(() => {
-          setErrorMessage(`Person '${numbObject.name}' was added to server`);
+          setAddedMessage(`Person '${numbObject.name}' was added to server`);
           setTimeout(() => {
-            setErrorMessage(null);
+            setAddedMessage(null);
           }, 5000);
         });
     }
@@ -109,14 +118,21 @@ const App = () => {
     if (message === null) {
       return null;
     }
-
     return <div className="error">{message}</div>;
+  };
+  const NotificationAdded = ({ message }) => {
+    if (message === null) {
+      return null;
+    }
+
+    return <div className="errorAdd">{message}</div>;
   };
 
   return (
     <div>
       <h2>Phonebook</h2>
       <Notification message={errorMessage} />
+      <NotificationAdded message={addedMessage} />
 
       <Filter handleFilterChange={handleFilterChange} nameFilter={nameFilter} />
       <h1> Add a new </h1>
