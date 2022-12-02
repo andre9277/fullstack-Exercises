@@ -1,0 +1,9 @@
+Começar backend servidor:
+1º Run npm init
+2º Instalar a lib express: npm install express
+3º Adicionar ao package.json no scrip: "dev": "nodemon index.js",
+4ºnpm install --save-dev nodemon
+5ºnpm run dev
+
+6º"Adicionar ao package.json no scrip:start": "node index.js",
+7º npm start
