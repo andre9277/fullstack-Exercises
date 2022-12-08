@@ -25,7 +25,7 @@ let persons = [
 ];
 
 app.get("/", (request, response) => {
-  response.send("<h1>Hello World!</h1>");
+  response.send("<h1>Hello World! </h1>\n h");
 });
 
 app.get("/api/persons", (request, response) => {
@@ -36,7 +36,8 @@ app.get("/api/persons", (request, response) => {
 app.get("/info", (request, response) => {
   const cont = persons.length;
   const date = new Date();
-  response.json(`Phonebook has info for ${cont} people ${date}`);
+  //const resp = "Phonebook has info for " + cont + " people \n" + date;
+  response.send(`Phonebook has info for ${cont} people <br/> ${date}`);
 });
 
 const PORT = 3001;
