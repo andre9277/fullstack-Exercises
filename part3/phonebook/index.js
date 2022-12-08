@@ -32,6 +32,13 @@ app.get("/api/persons", (request, response) => {
   response.json(persons);
 });
 
+//how many entries are in the phonebook at the time of processing the request: (3.2)
+app.get("/info", (request, response) => {
+  const cont = persons.length;
+  const date = new Date();
+  response.json(`Phonebook has info for ${cont} people ${date}`);
+});
+
 const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
