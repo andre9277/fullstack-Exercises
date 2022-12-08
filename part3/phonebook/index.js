@@ -40,6 +40,19 @@ app.get("/info", (request, response) => {
   response.send(`Phonebook has info for ${cont} people <br/> ${date}`);
 });
 
+//Fetching a single resource: (3.3)
+app.get("/api/persons/:id", (request, response) => {
+  const id = Number(request.params.id); //Route parameters are named URL segments that are used to capture the values specified at their position in the URL.
+  //console.log(typeof id);
+  const person = persons.find((person) => person.id === id);
+  //console.log(person);
+  if (person) {
+    response.json(person);
+  } else {
+    response.status(404).end();
+  }
+});
+
 const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
