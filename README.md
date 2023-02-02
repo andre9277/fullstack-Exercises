@@ -1,3 +1,3 @@
 # fullstack-Exercises
 
-Exercises I made from https://fullstackopen.com.
+Exercises I made from the online course: https://fullstackopen.com.
