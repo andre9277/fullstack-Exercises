@@ -127,14 +127,14 @@ const generateId = () => {
   return maxId + 1
 }
 
-//------------------3.7
+//------------------3.7---------
 app.use(morgan('tiny'))
 
 /*app.get('/', function(req, res) {
     res.send('Hello, World!!!')
 })*/
 
-//------------------3.8
+//------------------3.8----------
 
 
 morgan.token('request_body', (request) => JSON.stringify(request.body))
@@ -147,16 +147,23 @@ const requestLogger = ( request, response, next) => {
   next()
 }
 
-app.use(requestLogger)
+//app.use(requestLogger)
 
 
 //Configuração porta:
-const PORT = 3001;
+/*const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-});
+});*/
 
-//----------------------------------------------
+//------------------Deploy the app:
+
+//change the definition of the port our application
+const PORT = process.env.PORT || 3001
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
+})
+
 const cors = require('cors')
 
 app.use(cors())
